@@ -1,0 +1,27 @@
+
+name: CasC Pipeline
+on:
+  push:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  casc:
+    uses: aap-casc-platform-demo/aap-casc-engine/.github/workflows/casc-validate-and-trigger.yml@main
+    with:
+      dispatcher_jt_name: jt-platform-casc_dispatcher
+      # wait_for_completion: true       # set false for fire-and-forget mode
+      # poll_timeout_minutes: 30        # increase for large deployments
+    secrets:
+      AAP_HOST: ${{ secrets.AAP_HOST }}
+      AAP_USERNAME: ${{ secrets.AAP_USERNAME }}
+      AAP_PASSWORD: ${{ secrets.AAP_PASSWORD }}
+      AAP_DEV_HOST: ${{ secrets.AAP_DEV_HOST }}
+      AAP_DEV_TOKEN: ${{ secrets.AAP_DEV_TOKEN }}
+      AAP_TST_HOST: ${{ secrets.AAP_TST_HOST }}
+      AAP_TST_TOKEN: ${{ secrets.AAP_TST_TOKEN }}
+      AAP_NPR_HOST: ${{ secrets.AAP_NPR_HOST }}
+      AAP_NPR_TOKEN: ${{ secrets.AAP_NPR_TOKEN }}
+      AAP_PRD_HOST: ${{ secrets.AAP_PRD_HOST }}
+      AAP_PRD_TOKEN: ${{ secrets.AAP_PRD_TOKEN }}
+      ENGINE_REPO_TOKEN: ${{ secrets.ENGINE_REPO_TOKEN }}
